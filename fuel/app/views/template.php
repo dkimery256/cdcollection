@@ -18,14 +18,23 @@
 
     </head>
 
-    <body>
-        <div class="container">
+    <div class="container">
+        <body>        
+                
+                <div class="page-header"><h1>CD Collections</h1></div>
+                
+                <?php echo $content; ?>
             
-            <div class="page-header"><h1>CD Collections</h1></div>
-            
-            <?php echo $content; ?>
-
-        </div><!-- /.container -->
-    </body>
-
+        </body>
+        
+        <footer>
+        <?php
+        $user = Session::get('user'); 
+        if ($user != null){ 
+            $profile = Auth::get_profile_fields();
+            echo sprintf('<p>Curently Logged in: %s %s', $profile['first'], $profile['last']);  
+        }      
+        ?>
+        </footer>
+    </div><!-- /.container -->
 </html>

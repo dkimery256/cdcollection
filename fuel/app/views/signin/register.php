@@ -7,7 +7,7 @@
     $form->add_csrf();    
    
     // Start form for sign in
-    echo $form->open(array('action' => '/signin/process_new_user', 'method' => 'post', 'class' => 'form-signin'));
+    echo $form->open(array('action' => '/signin/register', 'method' => 'post', 'class' => 'form-signin'));
 ?>
 
     <h2 class="form-signin-heading">Register Form</h2>

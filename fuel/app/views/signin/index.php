@@ -1,5 +1,10 @@
 
 <?php    
+    //Destroy user session if exits
+    $user = Session::get('user');
+    if($user != null)
+        Session::delete('user');
+    
     // using the Form class
     echo \Form::csrf();
 
