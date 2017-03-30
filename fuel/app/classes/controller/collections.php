@@ -55,8 +55,31 @@ class Controller_Collections extends Controller_Template{
             $data = array();
             $this->template->title = 'Add CD';
             $this->template->content = View::forge('collections/add_record', $data);
-        }
-        
+        }        
+    }
+
+    public function action_edit_record($id){
+        if(Input::post('edit')){
+			$post = Model_Post::find(Input::post('post_id'));
+			$post->title = Input::post('title');
+			$post->category = Input::post('category');
+			$post->body = Input::post('body');
+			$post->tags = Input::post('tags');
+			$post->create_date = date('Y-m-d H:i:s');
+			$post->save();
+
+			Session::set_flash('success', 'Post Updated');
+
+			Response::redirect('/posts/view/' . $post->id);
+		}		
+		$album = Model_Collections::find('first', array(
+			'where' => array(
+				'id' => $id
+			)
+		));
+		$data = array('album' => $album);
+        $this->template->title = 'Edit Album';
+        $this->template->content = View::forge('collections/edit_record', $data);   
     }
 }
 ?>
