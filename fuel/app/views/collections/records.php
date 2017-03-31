@@ -1,4 +1,12 @@
-<!-- style -->
+ <!--Show if user successfully updated CD-->
+    <?php if(Session::get_flash('success')) : ?>
+        <div class="alert alert-success"> <?php echo Session::get_flash('success'); ?></div>
+    <?php endif; ?>
+    <?php if(Session::get_flash('error')) : ?>
+        <div class="alert alert-danger"> <?php echo Session::get_flash('error'); ?></div>
+    <?php endif; ?>
+
+<!-- style for CD table -->
 <style>
     table {
         border-collapse: collapse;
@@ -32,8 +40,7 @@ if ($status == "new_user" || $albums == null){
         echo '<td>' . $album->release_year . '</td>';
         echo '<td>' . $album->label . '</td>';
         echo sprintf('<td colspan="2" style="text-align: right;"><a class="btn btn-default" href="/collections/edit_record/%s">Edit CD</a>', $album->id);
-        echo sprintf('&nbsp&nbsp<a class="btn btn-danger" href="/collections/add_record/%s">Delete</a></td>', $album->id);
-        echo '<tr>';       
+        echo sprintf('&nbsp&nbsp<a class="btn btn-danger" href="/collections/delete_record/%s">Delete</a></td></tr>', $album->id);              
     }
    echo '</table><br><br>';
 }

@@ -60,17 +60,16 @@ class Controller_Collections extends Controller_Template{
 
     public function action_edit_record($id){
         if(Input::post('edit')){
-			$post = Model_Post::find(Input::post('post_id'));
-			$post->title = Input::post('title');
-			$post->category = Input::post('category');
-			$post->body = Input::post('body');
-			$post->tags = Input::post('tags');
-			$post->create_date = date('Y-m-d H:i:s');
-			$post->save();
+			$album = Model_Post::find(Input::post('album_id'));
+			$album->artist = Input::post('artist');
+			$album->ablum = Input::post('ablum');
+			$album->release_year = Input::post('release_year');
+			$album->label = Input::post('label');			
+			$album->save();
 
-			Session::set_flash('success', 'Post Updated');
+			Session::set_flash('success', 'CD Updated');
 
-			Response::redirect('/posts/view/' . $post->id);
+			Response::redirect('/collections/records');
 		}		
 		$album = Model_Collections::find('first', array(
 			'where' => array(
@@ -80,6 +79,16 @@ class Controller_Collections extends Controller_Template{
 		$data = array('album' => $album);
         $this->template->title = 'Edit Album';
         $this->template->content = View::forge('collections/edit_record', $data);   
+    }
+
+    //Show user all their CDs
+    public function action_delete_record($id){        
+        $album = Model_Collections::find('all',  array('where' => array('id' => $id)));
+        $album->delete();
+        Session::set_flash('success', 'CD Deleted');
+		$data = array();
+        $this->template->title = 'Your CD\'s';
+        $this->template->content = View::forge('collections/records', $data);
     }
 }
 ?>
