@@ -108,11 +108,15 @@ class Controller_Signin extends Controller_Template{
 			$this->template->content = View::forge('signin/register', $data);
 		}		
 	}
-
-	//Contoller action for registering a new user
-	public function action_process_new_user(){
-		//Check for post
-		
+	
+	//Logot out user
+	public function action_logout(){
+		$user = Session::get('user');
+		Auth::logout();
+		Session::delete('user');
+		$data = array();
+        $this->template->title = 'Sign In';
+        $this->template->content = View::forge('signin/index', $data);
 	}
 }
 ?>

@@ -19,17 +19,21 @@
     </head>
 
     <div class="container">
+        
+        <?php $user = Session::get('user'); //Used to check if user is signed in for footer and logout button ?>
+        
         <body>        
                 
                 <div class="page-header"><h1>CD Collections</h1></div>
-                
+                <?php if($user != null) : ?>
+                    <a class="btn btn-default" href="/signin/logout/%s">Log Out</a>
+                <?php endif;?>
                 <?php echo $content; ?>
             
         </body>
         
         <footer>
-        <?php
-        $user = Session::get('user'); 
+        <?php         
         if ($user != null){ 
             $profile = Auth::get_profile_fields();
             echo sprintf('<p>Curently Logged in: %s %s', $profile['first'], $profile['last']);  
