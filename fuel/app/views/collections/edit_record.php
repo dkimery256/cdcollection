@@ -17,28 +17,28 @@
     
     <?php         
         //Back to sign in
-        echo sprintf('<a href="/collections/records/%s">Go To Your CD Collection</a><br>', $status);
+        echo '<a href="/collections/records/current_user">Go To Your CD Collection</a><br>';
 
         //artist input
         echo $form->label('Artist:', 'artist');         
-        echo $form->input('artist', Input::post(isset($album->artist) ? $album->artist : ''), 
+        echo $form->input('artist', Input::post('artist', isset($album->artist) ? $album->artist : ''), 
             array('class'     => 'form-control', 
                   'required'  => 'required', 
                   'autofocus' => 'autofocus'));        
         //album input
         echo $form->label('Album:', 'album');         
-        echo $form->input('album', Input::post(isset($album->album) ? $album->album : ''), 
+        echo $form->input('album', Input::post('album', isset($album->album) ? $album->album : ''), 
             array('class'    => 'form-control', 
                   'required' => 'required'));     
 
         //release year input
         echo $form->label('Release Year:', 'release_year');         
-        echo $form->input('release_year', Input::post(isset($album->release_year) ? $album->release_year : ''),
+        echo $form->input('release_year', Input::post('release_year', isset($album->release_year) ? $album->release_year : ''),
             array('class'    => 'form-control', 
                   'required' => 'required'));
         //label input
         echo $form->label('Record Label:', 'label');         
-        echo $form->input('label', Input::post(isset($album->label) ? $album->label : ''),
+        echo $form->input('label', Input::post('label', isset($album->label) ? $album->label : ''),
             array('class'    => 'form-control', 
                   'required' => 'required'));
         ?>

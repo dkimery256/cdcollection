@@ -39,7 +39,8 @@ if ($status == "new_user" || $albums == null){
         echo '<td>' . $album->album . '</td>';
         echo '<td>' . $album->release_year . '</td>';
         echo '<td>' . $album->label . '</td>';
-        echo sprintf('<td colspan="2" style="text-align: right;"><a class="btn btn-default" href="/collections/edit_record/%s">Edit CD</a>', $album->id);
+        echo '<td colspan="2" style="text-align: right;"><a class="btn btn-default" href="#">Add/Remove Tracks</a>';
+        echo sprintf('&nbsp&nbsp<a class="btn btn-default" href="/collections/edit_record/%s">Edit CD</a>', $album->id);
         echo sprintf('&nbsp&nbsp<a class="btn btn-danger" href="/collections/delete_record/%s">Delete</a></td></tr>', $album->id);              
     }
    echo '</table><br><br>';

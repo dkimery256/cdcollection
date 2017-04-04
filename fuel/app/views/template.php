@@ -24,10 +24,12 @@
         
         <body>        
                 
-                <div class="page-header"><h1>CD Collections</h1></div>
-                <?php if($user != null) : ?>
-                    <a class="btn btn-default" href="/signin/logout/%s">Log Out</a>
-                <?php endif;?>
+                <div class="page-header">
+                    <h1>CD Collections</h1>
+                    <?php if($user != null) : ?>
+                        <a class="btn btn-default" href="/signin/logout">Log Out</a>
+                    <?php endif;?>
+                </div>
                 <?php echo $content; ?>
             
         </body>

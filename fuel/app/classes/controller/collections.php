@@ -7,7 +7,13 @@ class Controller_Collections extends Controller_Template{
         $user = Session::get('user');
         $CID = Auth::get('created_at');
         $albums = Model_Collections::find('all',  array('where' => array('collection_id' => $CID)));
-        $data = array('albums' => $albums, 'status' => $status);
+
+        if($status == null){
+            $data = array('albums' => $albums);
+        }else{
+            $data = array('albums' => $albums, 'status' => $status);
+        }
+        
         $this->template->title = 'Your CD\'s';
         $this->template->content = View::forge('collections/records', $data);
     }
@@ -60,16 +66,16 @@ class Controller_Collections extends Controller_Template{
 
     public function action_edit_record($id){
         if(Input::post('edit')){
-			$album = Model_Post::find(Input::post('album_id'));
+			$album = Model_Collections::find(Input::post('album_id'));
 			$album->artist = Input::post('artist');
-			$album->ablum = Input::post('ablum');
+			$album->album = Input::post('album');
 			$album->release_year = Input::post('release_year');
 			$album->label = Input::post('label');			
 			$album->save();
 
 			Session::set_flash('success', 'CD Updated');
 
-			Response::redirect('/collections/records');
+			Response::redirect('/collections/records/current_user');
 		}		
 		$album = Model_Collections::find('first', array(
 			'where' => array(
@@ -83,12 +89,10 @@ class Controller_Collections extends Controller_Template{
 
     //Show user all their CDs
     public function action_delete_record($id){        
-        $album = Model_Collections::find('all',  array('where' => array('id' => $id)));
+        $album = Model_Collections::find($id);
         $album->delete();
         Session::set_flash('success', 'CD Deleted');
-		$data = array();
-        $this->template->title = 'Your CD\'s';
-        $this->template->content = View::forge('collections/records', $data);
+		Response::redirect('/collections/records/current_user');
     }
 }
 ?>
