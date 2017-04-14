@@ -5,5 +5,6 @@ return array(
 	'_error_' => 'error/error',   // The main error route
 	'_CDs_'   => 'collections/records', // User's collection of CD's	
 	'_cdtracks_' => 'tracks/cd_tracks', // User's CD tracks'
+	'_inputs_'   => 'inputs/track_inputs' , 
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
 );

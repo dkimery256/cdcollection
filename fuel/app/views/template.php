@@ -16,6 +16,13 @@
     <?php echo Asset::css('signin.css');?>
     <?php echo Asset::css('grid.css');?>
 
+     <!--jQuery-->
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <?php echo Asset::js('tracks_js.js');?>
+
     </head>
 
     <div class="container">
@@ -43,12 +50,5 @@
         }      
         ?>
         </footer>
-    </div><!-- /.container -->
-
-    <!--jquery-->
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-    <?php echo Asset::js('tracks_js.js');?>
+    </div><!-- /.container -->   
 </html>

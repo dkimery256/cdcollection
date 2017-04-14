@@ -52,7 +52,8 @@ class Controller_Collections extends Controller_Template{
 					Response::redirect('/error/error/' . $error );
                 }
             }else{
-
+                $error = "You tried to do something bad, or the CSRF token is expired.";
+				Response::redirect('/error/error/' . $error);
             }
         }else{
             if(isset($status) && $status != null)
